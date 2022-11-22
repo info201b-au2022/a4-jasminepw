@@ -1,5 +1,5 @@
 ---
-title: "Analysis of US Mass Incarceration"
+title: "America's Over Policing of POC"
 author: "Jasmine Wong"
 date: '2022-11-21'
 output: html_document
@@ -19,39 +19,69 @@ how the prison system reinforces oppression and inequality.
 
 
 ## Introduction 
+Since before the time the United States of America was declared an independent 
+country racism and inequality was embedded in its culture. America is an 
+institution that upholds systemic inequality and racism. This is proven in the 
+United States prison system and incarceration populations. The
+_**social issues**_ related to the incarceration trends data set from the Vera Institute are the over-policing and criminalization of people of color, 
+immigrants, and impoverished people. The _**direct stakeholders**_ that are
+impacted by the research of this data set are the people who directly use 
+this data. The direct stakeholders include prisons, law enforcement, and social groups. The _**indirect stakeholders**_ are the incarcerated people that the 
+data is on. 
 
+From my analysis of the incarceration trends data from the Vera Institute these
+questions will be addressed to **expose patterns of inequality**:
+
+* What are the average jail rates of race groups? Which race groups have the 
+lowest and highest rates?
+* Has the U.S. prison population grown since 1970?
+* Are the prison populations in California, Florida, New York, Texas, and Washington increasing?
+* How do Black and White female prison populations differ?
+* How do Black female prison populations vary geographically?
 
 ## Data Summary 
-``` {r data summary}
+Note: Summary values are all from the year 2016 for relevance and specificity.
 
-```
-Note: Summary values are all from the year 2016
-
-The United States' over policing of people of color is shown in the average 
-prison rate 
+The United States' over policing of people of color is proven in the average 
+jail rates, per 100,000 people, of the country by race. For example, the 
+white race group has the _**lowest**_ average jail rate of 
+`r avg_white_jail_rate`. The second being Asian Americans and Pacific Islanders
+with an average jail rate of **`r avg_aapi_jail_rate`**. The third being 
+Latinxs with an average jail rate of **`r avg_latinx_jail_rate`**. The fourth 
+being American Natives with an average jail rate of 
+**`r avg_native_jail_rate`**. The fifth and _**highest**_ being African 
+Americans with an average jail rate of **`r avg_black_jail_rate`**. These jail 
+rates gradually increase, with the white race group being the lowest. 
+These rates correlate with the over policing of people of color in America. 
+White populations are not as heavily policed in America.
 
 ## Growth of the U.S. Prison Population
-```{r, fig.width=10, fig.height=6, echo=FALSE}
-plot_jail_pop_for_us()
+```{r growth, fig.width=10, fig.height=6, fig.cap= "_Figure 1_: Bar chart data visualization of the yearly growth of the United States' cumulative prison populations from 1970 to 2018.", echo=FALSE}
+ggplotly(plot_jail_pop_for_us())
 ```
+##### Summary
+This data visualization answers the question: _**"Has the U.S. prison population grown since 1970?"**_ This graph shows an increasing trend of the U.S. cumulative prison population. The population has **quadrupled** since 1970, proving that the United States prison population has increased. The year with the highest prison population was 2008, with a population of 778,200. The year with the lowest prison population was 1971, with a population of 155,679.
+
 
 ## Growth of Prison Population by State 
-``` {r, fig.width=10, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE}
+``` {r growth_states, fig.width=9, fig.height=5, fig.cap= "_Figure 2_: Line chart data visualization of the yearly growth of prison populations in California, Florida, New York, Texas, and Washington from 1970 to 2018.", echo=FALSE, warning=FALSE, message=FALSE}
 ggplotly(plot_jail_pop_by_states(c("WA", "NY", "CA", "FL", "TX")))
 ```
+##### Summary
+This data visualization answers the question: _**"Are the prison populations in California, Florida, New York, Texas, and Washington increasing?"**_ The data visualizations show that all of these states' prison populations are increasing, some states more than others but still increasing. States with the greatest increase in prison population would be California and Texas. However, this might be a given because these states' populations have also been growing since 1970. The state with the smallest increase is New York.
 
 
-
-## Section 5
-``` {r, fig.width=11, fig.height=7, echo=FALSE, warning=FALSE, message=FALSE}
+## Comparing Black and White Female Prison Populations
+``` {r grouped_barchart, fig.width=11, fig.height=7, fig.cap= "_Figure 3_: Grouped bar chart data visualization of the top five counties with the greatest female prison populations in 2016, comparing Black and white female prison populations.", echo=FALSE, warning=FALSE, message=FALSE}
 plot_female_prison_pops()
 ```
+##### Summary
+This data visualization answers the question: _**"How do Black and White female prison populations differ?"**_ This grouped bar chart shows the top five counties with the greatest prison populations in 2016. In all of these counties there is a greater Black female prison population than white female prison population. There is a distinct pattern of inequality within this data visualization. The Black female prison population is more than double the white female prison population in Los Angeles County, California.
 
-
-## Section 6
-```{r map, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+## Map of Black Female Prison Populations in the U.S. in 2016
+```{r map, fig.width=8, fig.height=4.4, fig.cap= "_Figure 4_: Interactive map data visualization of the counties with black female prison populations. Note: size of points' radius is relative to population size.", echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
 plot_map()
 ```
-
-
+##### Summary
+This data visualization answers the question: _**"How do Black female prison populations vary geographically?"**_ These markers represent Black female prison populations distributed throughout the country in 2016. The county with the largest black female prison population is Harry County, Texas. The second county with the largest black female prison population is in Los Angeles County, California. The majority of the plot markers lay on the middle to eastern parts of the United States, however those markers are smaller.
 

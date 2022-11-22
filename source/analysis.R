@@ -1,3 +1,4 @@
+## Load packages ----
 library(tidyverse)
 library(plotly)
 library(reshape2)
@@ -8,48 +9,19 @@ source("~/Documents/info201/assignments/a4-jasminepw/source/a4-helpers.R")
 
 ## Loading data ----
 #----------------------------------------------------------------------------#
-# incarceration_df is a the dataframe with the incarceration trends from the
-#                  Vera Institute
-# map_df is a dataframe with map data to plot maps
+# Variables:
+# incarceration_df: a the dataframe with the incarceration trends from the
+#                   Vera Institute
+# map_df: a dataframe with map data to plot maps
+# female_prison_pop: a dataframe with 2016 data of female prison populations
 #----------------------------------------------------------------------------#
+# Calls the function get_data() to load incarceration trends data
 incarceration_df <- get_data()
 
+# Calls the function get_map_data() to load the U.S. counties map data
 map_df <- get_map_data()
 
-## Section 2  ----
-#----------------------------------------------------------------------------#
-# 
-#----------------------------------------------------------------------------#
-avg_black_jail_rate <- incarceration_df %>%
-  filter(year == 2016) %>%
-  pull(black_jail_pop_rate) %>%
-  mean(na.rm = TRUE) %>%
-  round(3)
-
-avg_white_jail_rate <- incarceration_df %>%
-  filter(year == 2016) %>%
-  pull(white_jail_pop_rate) %>%
-  mean(na.rm = TRUE) %>%
-  round(3)
-
-avg_latinx_jail_rate <- incarceration_df %>%
-  filter(year == 2016) %>%
-  pull(latinx_jail_pop_rate) %>%
-  mean(na.rm = TRUE) %>%
-  round(3)
-
-avg_aapi_jail_rate <- incarceration_df %>%
-  filter(year == 2016) %>%
-  pull(aapi_jail_pop_rate) %>%
-  mean(na.rm = TRUE) %>%
-  round(3)
-
-avg_native_jail_rate <- incarceration_df %>%
-  filter(year == 2016) %>%
-  pull(native_jail_pop_rate) %>%
-  mean(na.rm = TRUE) %>%
-  round(3)
-
+# A dataframe with the 2016 data of female prison populations
 female_prison_pop <- incarceration_df %>%
   filter(year == 2016) %>%
   select(
@@ -63,10 +35,58 @@ female_prison_pop <- incarceration_df %>%
   ) %>%
   drop_na()
 
+## Section 2  ----
+#----------------------------------------------------------------------------#
+# Variables:
+# avg_black_jail_rate: is the average jail rate of Black people 
+# avg_white_jail_rate: is the average jail rate of white people
+# avg_latinx_jail_rate: is the average jail rate of Latinx people
+# avg_aapi_jail_rate: is the average jail rate of AAPI people
+# avg_native_jail_rate: is the average jail rate of Native American people
+# Note: All the rates and data is from 2016.
+#----------------------------------------------------------------------------#
+# Calculates the average jail rate of Black people in 2016
+avg_black_jail_rate <- incarceration_df %>%
+  filter(year == 2016) %>%
+  pull(black_jail_pop_rate) %>%
+  mean(na.rm = TRUE) %>%
+  round(3)
+
+# Calculates the average jail rate of white people in 2016
+avg_white_jail_rate <- incarceration_df %>%
+  filter(year == 2016) %>%
+  pull(white_jail_pop_rate) %>%
+  mean(na.rm = TRUE) %>%
+  round(3)
+
+# Calculates the average jail rate of Latinx people in 2016
+avg_latinx_jail_rate <- incarceration_df %>%
+  filter(year == 2016) %>%
+  pull(latinx_jail_pop_rate) %>%
+  mean(na.rm = TRUE) %>%
+  round(3)
+
+# Calculates the average jail rate of AAPI people in 2016
+avg_aapi_jail_rate <- incarceration_df %>%
+  filter(year == 2016) %>%
+  pull(aapi_jail_pop_rate) %>%
+  mean(na.rm = TRUE) %>%
+  round(3)
+
+# Calculates the average jail rate of Native American people in 2016
+avg_native_jail_rate <- incarceration_df %>%
+  filter(year == 2016) %>%
+  pull(native_jail_pop_rate) %>%
+  mean(na.rm = TRUE) %>%
+  round(3)
+
 ## Section 3  ----
 #----------------------------------------------------------------------------#
 # Growth of the U.S. Prison Population
-# Your functions might go here ... <todo:  update comment>
+# get_year_jail_pop(): function that returns a dataframe of  prison population 
+#                      of every year from 1970 to 2018
+# plot_jail_pop_for_us(): function that plots the data from get_year_jail_pop()
+#                         into a bar chart
 #----------------------------------------------------------------------------#
 # This function returns a dataframe of the jail populations in the U.S. from
 # 1970 to 2018
@@ -77,8 +97,8 @@ get_year_jail_pop <- function() {
   return(year_pop)
 }
 
-# This function returns the plot if dataframe of the jail populations in the
-# U.S. from 1970 to 2018
+# This function returns the plot of the above dataframe of the jail populations 
+# in the U.S. from 1970 to 2018
 plot_jail_pop_for_us <- function() {
   pop_plot <- ggplot(get_year_jail_pop()) +
     geom_col(mapping = aes(x = year, y = year_jail_pop)) +
@@ -94,9 +114,13 @@ plot_jail_pop_for_us <- function() {
 ## Section 4  ----
 #----------------------------------------------------------------------------#
 # Growth of Prison Population by State
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
+# get_jail_pop_by_states(states): a function that returns a dataframe of the
+#                                 given states' yearly jail populations
+# plot_jail_pop_by_states(states): a function that returns a line chart of the
+#                                  given states' yearly jail populations
 #----------------------------------------------------------------------------#
+# Wrangles data from incarceration dataframe to collect the yearly jail
+# populations of the given states, returns dataframe
 get_jail_pop_by_states <- function(states) {
   by_states <- incarceration_df %>%
     filter(state %in% states) %>%
@@ -105,6 +129,8 @@ get_jail_pop_by_states <- function(states) {
   return(by_states)
 }
 
+# Creates the line chart of the given states' yearly jail populations, returns
+# plot
 plot_jail_pop_by_states <- function(states) {
   growth_states_plot <- ggplot(get_jail_pop_by_states(states)) +
     geom_line(mapping = aes(x = year, y = year_jail_pop, color = state)) +
@@ -120,10 +146,17 @@ plot_jail_pop_by_states <- function(states) {
 
 ## Section 5  ----
 #----------------------------------------------------------------------------#
-# <variable comparison that reveals potential patterns of inequality>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
+# Variable comparison that reveals potential patterns of inequality:
+# Comparing Black and White Female Prison Populations
+# get_female_prison_pop(): a function that returns a dataframe of 2016 data
+#                          that shows top 5 counties with greatest female prison
+#                          populations and comparing Black and white female
+#                          populations
+# plot_female_prison_pops(): a function that plots the dataframe from the 
+#                            above function into a grouped bar chart
 #----------------------------------------------------------------------------#
+# Wrangles 2016 data to find top five counties with greatest female prison
+# populations, returns dataframe
 get_female_prison_pop <- function() {
   greater_than <- female_prison_pop %>%
     filter(black_female_prison_pop > white_female_prison_pop) %>%
@@ -144,6 +177,8 @@ get_female_prison_pop <- function() {
   return(df_melt)
 }
 
+# Creates grouped bar chart with the dataframe of the above function, returns
+# grouped bar chart that compares Black and white female prison population
 plot_female_prison_pops <- function() {
   plot <- ggplot(get_female_prison_pop()) +
     geom_col(
@@ -162,10 +197,15 @@ plot_female_prison_pops <- function() {
 
 ## Section 6  ----
 #----------------------------------------------------------------------------#
-# <a map shows potential patterns of inequality that vary geographically>
-# Your functions might go here ... <todo:  update comment>
-# See Canvas
+# A map shows potential patterns of inequality that vary geographically:
+# Map of Black Female Prison Populations in the U.S. in 2016
+# get_map_data(): a function that returns a dataframe of the 2016 mapping data 
+#                 of Black female prison populations
+# plot_map(): a function that returns the map plot of Black Female Prison 
+#             Populations in the U.S. in 2016
 #----------------------------------------------------------------------------#
+# Wrangles data to find the 2016 Black female prison populations by county,
+# returns dataframe
 get_map_data <- function() {
   get_data <- left_join(female_prison_pop, map_df, by = "fips")
   get_data <- get_data %>%
@@ -177,6 +217,8 @@ get_map_data <- function() {
   return(get_data)
 }
 
+# Creates interactive map that shows the 2016 Black female prison populations 
+# by county, returns plot map
 plot_map <- function() {
   prison_pop_map <- leaflet(get_map_data()) %>%
     addTiles() %>%

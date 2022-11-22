@@ -23,10 +23,12 @@ Since before the time the United States of America was declared an independent
 country racism and inequality was embedded in its culture. America is an 
 institution that upholds systemic inequality and racism. This is proven in the 
 United States prison system and incarceration populations. The
-_**social issues**_ related to the incarceration trends data set from the Vera Institute are the over-policing and criminalization of people of color, 
+_**social issues**_ related to the incarceration trends data set from the Vera 
+Institute are the over-policing and criminalization of people of color, 
 immigrants, and impoverished people. The _**direct stakeholders**_ that are
 impacted by the research of this data set are the people who directly use 
-this data. The direct stakeholders include prisons, law enforcement, and social groups. The _**indirect stakeholders**_ are the incarcerated people that the 
+this data. The direct stakeholders include prisons, law enforcement, and social 
+groups. The _**indirect stakeholders**_ are the incarcerated people that the 
 data is on. 
 
 From my analysis of the incarceration trends data from the Vera Institute these
@@ -35,7 +37,8 @@ questions will be addressed to **expose patterns of inequality**:
 * What are the average jail rates of race groups? Which race groups have the 
 lowest and highest rates?
 * Has the U.S. prison population grown since 1970?
-* Are the prison populations in California, Florida, New York, Texas, and Washington increasing?
+* Are the prison populations in California, Florida, New York, Texas, and 
+Washington increasing?
 * How do Black and White female prison populations differ?
 * How do Black female prison populations vary geographically?
 

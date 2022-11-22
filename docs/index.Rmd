@@ -1,7 +1,7 @@
 ---
-title: "Your A4 Report Title (TODO: Revise title)"
-author: "Your Name"
-date: '2022-11-01'
+title: "Analysis of US Mass Incarceration"
+author: "Jasmine Wong"
+date: '2022-11-21'
 output: html_document
 ---
 
@@ -11,35 +11,47 @@ source("../source/analysis.R")
 ```
 
 ## Abstract 
-[TODO: Include a short abstract (about 50 words)]
+Systemic racism is an issue that has been occurring in the United States since 
+the day it was formed. America's mass incarceration of people of color proves 
+that the institution continues to uphold systemic racism and inequality. This 
+report analyzes the data about incarceration trends in the U.S. and will show 
+how the prison system reinforces oppression and inequality. 
 
-# Test (TODO: Remove before submission!!)
-```{r echo=FALSE}
-q1_string <- test_query1()
-num <- 5
-```
-As you know, this is a markdown report. The [R Markdown Cheatsheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) is **useful!**
-
-* Here's a test of a dynamic variable. Say **"`r q1_string`!!!** 
-* Here's another test. A vector
-of numbers: `r test_query2(num)`.
-
-Recall that _{r echo=TRUE}_ can be used to display the code, 
-which is very useful when developing and debugging a report. Here's an example: 
-
-```{r echo=TRUE}
-num <- 5
-sum <- sum(test_query2(num))
-print(sum)
-```
 
 ## Introduction 
-[TODO]
+
 
 ## Data Summary 
-[TODO]
+``` {r data summary}
 
-[TODO ... other sections ... See Canvas for details]
+```
+Note: Summary values are all from the year 2016
 
-_All the very best with your work!_
+The United States' over policing of people of color is shown in the average 
+prison rate 
+
+## Growth of the U.S. Prison Population
+```{r, fig.width=10, fig.height=6, echo=FALSE}
+plot_jail_pop_for_us()
+```
+
+## Growth of Prison Population by State 
+``` {r, fig.width=10, fig.height=6, echo=FALSE, warning=FALSE, message=FALSE}
+ggplotly(plot_jail_pop_by_states(c("WA", "NY", "CA", "FL", "TX")))
+```
+
+
+
+## Section 5
+``` {r, fig.width=11, fig.height=7, echo=FALSE, warning=FALSE, message=FALSE}
+plot_female_prison_pops()
+```
+
+
+## Section 6
+```{r map, echo=FALSE, eval=TRUE, message=FALSE, warning=FALSE}
+plot_map()
+```
+
+
 

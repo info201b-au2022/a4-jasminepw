@@ -11,6 +11,17 @@ get_data <- function(num_records=-1) {
   return(df)
 }
 
+#---------------------------------------------------------------------------#
+# This function returns the US map data as a dataframe
+# Note: The CSV file is stored on my local machine to speed load times
+#---------------------------------------------------------------------------#
+get_map_data <- function() {
+  fname <- "~/Documents/info201/assignments/a4-jasminepw/source/uscounties.csv"
+  df <- read.csv(fname)
+  df <- rename(df, fips = county_fips)
+  return(df)
+}
+
 # Processing places ----
 # NOTE: For these functions to work, the dataframe `incarceration_df` must 
 #       be initialized
@@ -168,3 +179,4 @@ get_basic_info <- function(df) {
 # 
 # ## 
 # states_with_no_jail_pop()
+
